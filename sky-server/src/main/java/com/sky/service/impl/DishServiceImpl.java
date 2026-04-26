@@ -3,6 +3,7 @@ package com.sky.service.impl;
 import com.sky.dto.DishDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.mapper.DishFlavorsMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.service.DishService;
 import lombok.Data;
@@ -17,6 +18,9 @@ import java.util.List;
 public class DishServiceImpl implements DishService {
     DishDTO dishDTO;
     @Autowired
+    DishFlavorsMapper dishFlavorsMapper;
+
+    @Autowired
     private DishMapper dishMapper;
 
     @Transactional
@@ -24,10 +28,15 @@ public class DishServiceImpl implements DishService {
     ///向dish表输入数据，除口味属性外
     public void add(Dish dish) {
         dishMapper.add();
+        Long dishId = dish.getId();
         /// 向口味表输入多条数据
         List<DishFlavor> flavors = dishDTO.getFlavors();
+        ///确保数据存在且至少有一条
         if (flavors != null && flavors.size() > 0) {
-
+            flavors.forEach(dishFlavor -> {
+                dishFlavor.setId(dishId);
+            });
+            dishFlavorsMapper.insertBatch(flavors);
         }
     }
 }
