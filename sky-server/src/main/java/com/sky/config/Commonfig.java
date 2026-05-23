@@ -17,8 +17,7 @@ public class Commonfig {
         /**
          * 设置静态资源映射
          */
-        @Override
-        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        public void addResourceHanlers(ResourceHandlerRegistry registry) {
             log.info("开始设置静态资源映射...");
             // 当请求路径匹配 /download/** 时，去本地磁盘路径找文件
             registry.addResourceHandler("/download/**")

@@ -15,6 +15,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  redis:
+    host:${sky.redis.host}
+    port:${sky.redis.port}
+    password:${sky.redis.password}
+
 
 mybatis:
   #mapper配置文件
@@ -41,3 +46,5 @@ sky:
     # 设置前端传递过来的令牌名称
     admin-token-name: token
   upload-path: E:/web_uploads/
+
+
