@@ -1,16 +1,16 @@
 package com.sky.controller.admin;
 
-import com.sky.entity.Dish;
+import com.sky.dto.DishDTO;
 import com.sky.result.Result;
 import com.sky.service.DishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/admin/dish")
 @Slf4j
 public class DishController {
@@ -18,9 +18,9 @@ public class DishController {
     private DishService dishService;
 
     @PostMapping
-    public Result save(@RequestBody Dish dish) {
-        log.info("save dish:{}", dish);
-        dishService.add(dish);
+    public Result save(@RequestBody DishDTO dishDTO) {
+        log.info("save dish:{}", dishDTO);
+        dishService.add(dishDTO);
         return Result.success();
     }
 }

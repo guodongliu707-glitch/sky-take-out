@@ -6,7 +6,7 @@ import com.sky.entity.DishFlavor;
 import com.sky.mapper.DishFlavorsMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.service.DishService;
-import lombok.Data;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Data
 public class DishServiceImpl implements DishService {
-    DishDTO dishDTO;
     @Autowired
-    DishFlavorsMapper dishFlavorsMapper;
+    private DishFlavorsMapper dishFlavorsMapper;
 
     @Autowired
     private DishMapper dishMapper;
@@ -26,15 +24,17 @@ public class DishServiceImpl implements DishService {
     @Transactional
     //トランザクション　：开启事务管理
     ///向dish表输入数据，除口味属性外
-    public void add(Dish dish) {
-        dishMapper.add();
+    public void add(DishDTO dishDTO) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO, dish);
+        dishMapper.add(dish);
         Long dishId = dish.getId();
         /// 向口味表输入多条数据
         List<DishFlavor> flavors = dishDTO.getFlavors();
         ///确保数据存在且至少有一条
         if (flavors != null && flavors.size() > 0) {
             flavors.forEach(dishFlavor -> {
-                dishFlavor.setId(dishId);
+                dishFlavor.setDishId(dishId);
             });
             dishFlavorsMapper.insertBatch(flavors);
         }
