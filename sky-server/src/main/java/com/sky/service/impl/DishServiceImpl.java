@@ -6,6 +6,7 @@ import com.sky.entity.DishFlavor;
 import com.sky.mapper.DishFlavorsMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.service.DishService;
+import com.sky.vo.DishVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+
 public class DishServiceImpl implements DishService {
     @Autowired
     private DishFlavorsMapper dishFlavorsMapper;
@@ -39,6 +41,15 @@ public class DishServiceImpl implements DishService {
             dishFlavorsMapper.insertBatch(flavors);
         }
     }
+
+    @Override
+    public List<DishVO> listWithFlavor(Dish dish) {
+            return null;
+
+    }
+
+
+  
 }
 
 
