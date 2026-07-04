@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+
 spring:
   profiles:
     active: dev
@@ -15,12 +16,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  redis:
-    host: ${sky.redis.host}
-    port: ${sky.redis.port}
-    password: ${sky.redis.password}
-
-
+  data:
+    redis:
+      password: ${sky.redis.password}
+      port: ${sky.redis.port}
+      host: ${sky.redis.host}
 mybatis:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml

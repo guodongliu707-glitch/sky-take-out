@@ -23,6 +23,7 @@
 
     <properties>
         <!-- 统一版本管理，按需调整到你的组织策略 -->
+        <java.version>17</java.version>
         <mybatis.spring>2.2.0</mybatis.spring>
         <lombok>1.18.32</lombok>
         <jackson.version>2.13.4</jackson.version>
@@ -37,6 +38,26 @@
         <poi>3.16</poi>
         <httpclient5.version>5.2.1</httpclient5.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencyManagement>
         <dependencies>
@@ -154,6 +175,23 @@
                 <artifactId>httpclient5</artifactId>
                 <version>${httpclient5.version}</version>
             </dependency>
+            <dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.83</version>
+</dependency>
+
+<dependency>
+    <groupId>commons-lang</groupId>
+    <artifactId>commons-lang</artifactId>
+    <version>2.6</version>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
 
         </dependencies>
 

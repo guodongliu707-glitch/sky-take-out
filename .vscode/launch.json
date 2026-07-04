@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run SkyApplication (JDK 17)",
+      "request": "launch",
+      "mainClass": "com.sky.SkyApplication",
+      "projectName": "sky-server",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "JAVA_HOME": "D:\\JDK17",
+        "PATH": "D:\\JDK17\\bin;${env:PATH}"
+      },
+      "javaExecutable": "D:\\JDK17\\bin\\java.exe",
+      "vmArgs": [
+        "-Djava.home=D:\\JDK17"
+      ]
+    }
+  ]
+}

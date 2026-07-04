@@ -1,3 +1,15 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/sky_take_out?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+  data:
+    redis:
+      repositories:
+        enabled: false
+
 sky:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
